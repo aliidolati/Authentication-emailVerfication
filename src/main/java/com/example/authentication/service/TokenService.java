@@ -11,8 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class TokenService {
-    private final TokenRepository repository ;
+public class TokenService extends AbstractService<Token , TokenRepository> {
     public void save(Token token) {
         repository.save(token) ;
     }

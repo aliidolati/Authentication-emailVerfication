@@ -12,18 +12,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.UUID;
 
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
-    private final UserRepository repository ;
+public class UserService extends AbstractService<User,UserRepository> implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder ;
     private final TokenService tokenService ;
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         return repository.findByEmail(username).orElseThrow( ()->
@@ -40,15 +38,13 @@ public class UserService implements UserDetailsService {
         user.setSecurePassword(encodedPassword);
         repository.save(user) ;
         String token = UUID.randomUUID().toString();
-        Token confirmToken = Token.builder()
-                .token(token)
-                .createdAt(LocalDateTime.now())
-                .expiresAt(LocalDateTime.now().plusMinutes(15))
-                .user(user).build() ;
-        tokenService.save(confirmToken);
+        tokenService.buildToken(user,token);
         return token ;
     }
     public void enableUser(String email){
-        repository.enaleUser(email);
+        repository.enableUser(email);
+    }
+    public void changePassword(String username , String password) {
+        repository.changePassword(username , password);
     }
 }

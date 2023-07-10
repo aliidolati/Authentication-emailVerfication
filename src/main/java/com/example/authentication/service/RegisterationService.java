@@ -18,7 +18,7 @@ public class RegisterationService {
     private final TokenService tokenService ;
     public String register(User user) throws ServiceException {
         String token = userService.signUp(user) ;
-        String link = "http://localhost:8081/api/v1/registration/confirm?token=" + token;
+        String link = "http://localhost:8081/home/confirm?token=" + token;
         emailService.send(user.getEmail() , buildEmail(user.getFirstName() , link));
         return token ;
     }

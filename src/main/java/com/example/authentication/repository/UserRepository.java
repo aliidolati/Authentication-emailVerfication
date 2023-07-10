@@ -4,7 +4,6 @@ import com.example.authentication.Model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -15,5 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u " +
             "SET u.enabled = TRUE where u.email = ?1")
-    void enaleUser(String email) ;
+    void enableUser(String email) ;
+    @Modifying
+    @Query("UPDATE User u " +
+            "SET u.securePassword = ?2 where u.email=?1")
+    void changePassword(String username,String password) ;
 }

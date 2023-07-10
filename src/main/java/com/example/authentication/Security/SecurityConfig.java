@@ -19,7 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private static final String[] URLS = {
-            "/api/v*/registration/**"
+            "/home/signup"
+            ,"/home/confirm"
+            ,"/password/change-password"
+            ,"/password/reset-password/confirm"
     } ;
     private final UserDetailsService userDetailsService ;
     private final JwtAuthenticationFilter authenticationFilter ;
