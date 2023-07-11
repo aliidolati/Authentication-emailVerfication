@@ -5,7 +5,6 @@ import com.example.authentication.Model.entity.User;
 import com.example.authentication.exception.ServiceException;
 import com.example.authentication.service.email.EmailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
