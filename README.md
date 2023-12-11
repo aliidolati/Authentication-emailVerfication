@@ -12,7 +12,7 @@ JDK 17+
 Maven 3+
 To build and run the project, follow these steps:
 
-Clone the repository: git clone https://github.com/aliidolati/Authentication-emailVerfication.git
+Clone the repository: git clone https://github.com/aliidolati/authentication
 Navigate to the project directory: cd authentication
 Add database "user" to mariadb or any database(change the application.properties)
 Build the project: mvn clean install
