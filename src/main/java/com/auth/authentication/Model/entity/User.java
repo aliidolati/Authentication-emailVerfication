@@ -1,10 +1,7 @@
 package com.example.authentication.Model.entity;
 
 import com.example.authentication.Model.enums.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.*;
 import java.util.List ;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +25,8 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(unique = true)
     private String email ;
     private String securePassword ;
+    @OneToOne(mappedBy = "user" , cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    private Wallet wallet ;
     @Enumerated(EnumType.STRING)
     private Role role ;
     private Boolean enabled = false ;

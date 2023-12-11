@@ -18,10 +18,6 @@ public class Transaction extends AbstractEntity{
     private Long amount ;
     @ManyToOne(cascade = CascadeType.MERGE , fetch = FetchType.EAGER)
     private Wallet wallet ;
-    @Column(unique = true)
-    private String trackingId ;
-    @Enumerated(EnumType.STRING)
-    private TrackingStatus trackingStatus ;
     @Enumerated(EnumType.STRING)
     private DealType dealType ;
 }
